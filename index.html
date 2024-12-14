@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dynamic Responsive Design</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      font-family: "Times New Roman", Georgia, Serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Playfair Display";
+      letter-spacing: 0.3em;
+    }
+    #searchButton {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em 2em;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5em;
+      cursor: pointer;
+      box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    #searchButton:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 0.5em 0.75em rgba(0, 0, 0, 0.2);
+    }
+    .w3-content {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .w3-top .w3-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .w3-bar .w3-button {
+      padding: 1em;
+      font-size: 1em;
+    }
+    .w3-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .w3-col {
+      flex: 1;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+    footer {
+      text-align: center;
+      padding: 2em;
+      background-color: #f1f1f1;
+      font-size: 0.9rem;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f1f1; /* Add a subtle background color */
+        padding: 2em; /* Add spacing */
+        text-align: center; /* Center-align text */
+    }
+
+    header h1 {
+        font-size: 2.5em; /* Adjust font size for prominence */
+        margin: 0.5em 0;
+        color: #333; /* Darker color for readability */
+        letter-spacing: 0.1em; /* Subtle letter spacing */
+    }
+
+    header p {
+        font-size: 1.2em; /* Adjust paragraph font size */
+        color: #555; /* Softer color for secondary text */
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ala's Next Vacation</h1>
+  </header>
+
+  <div class="w3-content">
+    <div class="w3-row" id="about">
+      <div class="w3-col m6">
+        <img src="images/oj.jpeg" alt="A scenic vacation photo">
+      </div>
+      <div class="w3-col m6">
+        <h1 class="w3-center">Where should Ala go next?</h1>
+        <p class="w3-large">Ala's next destination will be the most spectacular and amazing...</p>
+        <button id="searchButton">Find Ala's Next Travel Vacation</button>
+      </div>
+    </div>
+    <hr>
+    <div class="w3-row" id="menu">
+      <div class="w3-col l6">
+        <h1 class="w3-center">Ala Quotes</h1>
+        <h4>October 15th</h4>
+        <p class="w3-text-grey">"The fuck is cattle *googles*"</p>
+        <h4>November 5th</h4>
+        <p class="w3-text-grey">"Lyly you’re worth 61 camels"</p>
+        <h4>December 10th</h4>
+        <p class="w3-text-grey">"Are you choosing girl or abortion"</p>
+        <h4>December 11th eggs</h4>
+        <p class="w3-text-grey">me: I don’t like Lana<br>Ala: I don’t fuck with u *links big sean song*</p>
+      </div>
+      <div class="w3-col l6">
+        <img src="images/center.jpeg" alt="Ala Quotes Section">
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container" id="contact">
+      <h1>Final Message</h1>
+      <p>
+        Hello Ala, I hope you take this well haha. Merry Christmas and I hope you enjoy this website I created. There's a lot of interesting things.<br>
+        - Your Friend Always, Vishnu (December 15th 2024)
+      </p>
+    </div>
+  </div>
+  <footer>
+    <p>Created for Secret Santa December 15th 2024</p>
+    <img src="images/about_page.jpeg" alt="Footer Image Description">
+  </footer>
+  <script>
+    document.getElementById("searchButton").addEventListener("click", function() {
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          const country = data.country.toLowerCase();
+          const skyscannerUrl = `https://www.skyscanner.net/transport/flights/${country}/wars/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=0&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=2501`;
+          window.open(skyscannerUrl, "_blank");
+        })
+        .catch(error => {
+          alert("Error retrieving location. Please try again.");
+          console.error(error);
+        });
+    });
+  </script>
+</body>
+</html>
