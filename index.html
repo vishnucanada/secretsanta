@@ -137,19 +137,24 @@
     <img src="images/about_page.jpeg" alt="Footer Image Description">
   </footer>
   <script>
-    document.getElementById("searchButton").addEventListener("click", function() {
+    document.getElementById("searchButton").addEventListener("click", function () {
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
-          const country = data.country.toLowerCase();
-          const skyscannerUrl = `https://www.skyscanner.net/transport/flights/${country}/wars/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=0&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=2501`;
+          // Use the fetched country or default to Spain ('ES') if undefined
+          const country = (data.country || 'ES').toLowerCase(); // Default to 'ES' for Spain
+          const skyscannerUrl = `https://www.skyscanner.net/transport/flights/${country}/wars/`;
           window.open(skyscannerUrl, "_blank");
         })
         .catch(error => {
-          alert("Error retrieving location. Please try again.");
-          console.error(error);
+          // If an error occurs, default to Spain ('ES')
+          const defaultCountry = 'es'; // ISO country code for Spain in lowercase
+          const skyscannerUrl = `https://www.skyscanner.net/transport/flights/${defaultCountry}/wars/`;
+          window.open(skyscannerUrl, "_blank");
+          console.error("Error retrieving location:", error);
         });
     });
+
   </script>
 </body>
 </html>
